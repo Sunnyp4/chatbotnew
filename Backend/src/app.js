@@ -4,7 +4,7 @@ require('dotenv').config()
 const chatRoutes=require('./routes/chat.routes');
 const app=express();
 app.use(cors({
-  origin: ["http://localhost:3000", process.env.CLIENT_URL],
+  origin: ["http://localhost:3000", 'https://chatbotnew-fawn.vercel.app'],
   credentials: true
 }));
 app.use(express.json());
