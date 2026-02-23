@@ -4,4 +4,4 @@ const API = axios.create({
   baseURL: process.env.REACT_APP_API_URL || "http://localhost:5000/api"
 });
 
-export const sendMessage = (data) => API.post('/chat', data);
+export const sendMessage = (data) => API.post('/api/chat', data);
