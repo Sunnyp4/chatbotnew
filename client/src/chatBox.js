@@ -41,7 +41,10 @@ const ChatBox = () => {
             textAlign: msg.role === "user" ? "right" : "left",
             margin: "10px 0"
           }}>
-            <b>{msg.role}:</b> {msg.content}
+            <b>{msg.role}:</b>
+            <ul>
+              <li> {msg.content}</li>
+            </ul>
           </div>
         ))}
         {loading && (
