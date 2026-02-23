@@ -1,0 +1,21 @@
+# dependencies
+node_modules/
+client/node_modules/
+Backend/node_modules/
+
+# env files (VERY IMPORTANT - contains API keys & DB URL)
+.env
+Backend/.env
+client/.env
+
+# logs
+logs
+*.log
+
+# build
+dist/
+build/
+
+# OS files
+.DS_Store
+Thumbs.db
