@@ -36,26 +36,46 @@ const ChatBox = () => {
       <h2>AI Chatbot</h2>
 
       <div style={{ height: "400px", overflowY: "scroll", border: "1px solid #ccc", padding: "10px" }}>
-        {chat.map((msg, index) => (
-          <div key={index} style={{
-            textAlign: msg.role === "user" ? "right" : "left",
-            margin: "10px 0"
-          }}>
-            <b>{msg.role}:</b>
-            <ul>
-              <li> {msg.content}</li>
-            </ul>
-          </div>
-        ))}
-        {loading && (
-    <div className="bot-msg">
+        <ul style={{ listStyle: "none", padding: 0 }}>
+  {chat.map((msg, index) => (
+    <li
+      key={index}
+      style={{
+        textAlign: msg.role === "user" ? "right" : "left",
+        margin: "10px 0"
+      }}
+    >
+      <b>{msg.role}:</b>
+      <div
+        style={{
+          display: "inline-block",
+          background: msg.role === "user" ? "#DCF8C6" : "#f1f1f1",
+          padding: "8px 12px",
+          borderRadius: "10px",
+          maxWidth: "70%"
+        }}
+      >
+        {msg.content}
+      </div>
+    </li>
+  ))}
+
+  {/* Loader as last LI (Perfect placement) */}
+  {loading && (
+    <li
+      style={{
+        textAlign: "left",
+        margin: "10px 0"
+      }}
+    >
       <div className="typing-loader">
         <span></span>
         <span></span>
         <span></span>
       </div>
-    </div>
+    </li>
   )}
+</ul>
       </div>
 
       <input
