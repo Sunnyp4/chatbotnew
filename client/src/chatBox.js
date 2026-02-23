@@ -1,16 +1,19 @@
 import React, { useState } from 'react';
 import { sendMessage } from './api';
+import './chatbot.css'
 
 const ChatBox = () => {
   const [message, setMessage] = useState("");
   const [chat, setChat] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const handleSend = async () => {
     if (!message.trim()) return;
 
     const userMsg = { role: "user", content: message };
     setChat((prev) => [...prev, userMsg]);
-
+    setLoading(true);
+    setMessage("");
     try {
       const res = await sendMessage({
         userId: "user123",
@@ -19,10 +22,13 @@ const ChatBox = () => {
 
       const aiMsg = { role: "assistant", content: res.data.reply };
       setChat((prev) => [...prev, aiMsg]);
-      setMessage("");
+      
     } catch (err) {
       console.error(err);
     }
+     finally {
+    setLoading(false); // Hide loader
+  }
   };
 
   return (
@@ -38,6 +44,15 @@ const ChatBox = () => {
             <b>{msg.role}:</b> {msg.content}
           </div>
         ))}
+        {loading && (
+    <div className="bot-msg">
+      <div className="typing-loader">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  )}
       </div>
 
       <input
